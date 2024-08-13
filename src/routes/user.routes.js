@@ -4,6 +4,8 @@ import {
 	logoutUser,
 	refreshAccessToken,
 	registerUser,
+	updateUserAvatar,
+	updateUserCoverImage,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -24,5 +26,13 @@ router.route("/login").post(loginUser);
 router.route("/logout").post(verifyJWT, logoutUser);
 
 router.route("/refresh-token").post(refreshAccessToken);
+
+router
+	.route("/update-avatar")
+	.post(upload.single("avatar"), verifyJWT, updateUserAvatar);
+
+router
+	.route("/update-coverImage")
+	.post(upload.single("coverImage"), verifyJWT, updateUserCoverImage);
 
 export default router;

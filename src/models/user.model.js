@@ -42,6 +42,10 @@ const userSchema = new Schema(
 			type: String,
 			required: [true, "Password is Required!"],
 		},
+		refreshToken: {
+			type: String,
+			default: "",
+		},
 	},
 	{ timestamps: true }
 );
